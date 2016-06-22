@@ -1,4 +1,4 @@
-var mainUrl = "http://http://192.241.188.10:5000/"
+var mainUrl = "http://192.241.188.10:5000/"
 
 var errorMessage = document.getElementById("error");
 var register = function() {
