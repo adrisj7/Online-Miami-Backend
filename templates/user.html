@@ -2,9 +2,9 @@
 {% block title %} User {% endblock %}
 
 {% block content %}
-  <h2> Editing {{session["username"]}}'s account </h2>
-  <p> Display Name </p>
-  <input type="text" class = "form-control" disabled>
+  <h2> {{session["username"]}}'s account </h2>
+  <b> Measures </b>
+  <p> Total Points Earned: {{points}}</p>
   <br><br>
   <p> Player Color </p>
   <i> Coming Soon </i>

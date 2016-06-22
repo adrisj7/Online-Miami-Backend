@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, redirect, session,jsonify
+from flask import Flask, render_template, request, redirect, session,jsonify, send_from_directory
+
 from flask.ext.hashing import Hashing
 from flask.ext.user import login_required
 
@@ -37,6 +38,14 @@ def home():
 @web.route("/about")
 def about():
     return render_template("about.html")
+
+@web.route("/download")
+def download():
+    return render_template("download.html")
+
+@web.route('/files/<path:path>')
+def send_file(path):
+    return send_from_directory('files', path)
 
 @web.route("/register", methods = ["GET"])
 def register():
@@ -80,9 +89,10 @@ def logout():
     return redirect("/")
 
 @login_required
-@web.route("/user", methods = ["POST"])
+@web.route("/user")
 def userPage():
-    return render_template("user.html")
+    points = loadUserData()[session["username"]]["kills"]
+    return render_template("user.html", points = points)
 
 
 @web.route("/updateData")
