@@ -18,7 +18,6 @@ web.secret_key ="""@t/"Iq^7y5cV>`\'<Rlv"""
 globe = {}
 globe["session"] = session
 
-user_login = {}
 
 
 # TODO: Make less unsafe
@@ -54,6 +53,7 @@ def registerUser():
     if username in user_login:
         return "User already exists"
     updateUserLogin(username,hashing.hash_value(password, salt=SALT))
+    updateUserData(username, {"kills" : 0, "points" : 0})
     return "1"
 
 @web.route("/login")
@@ -97,6 +97,7 @@ def updateUser():
        user_dict = user_data[username]
        updateLenientRF(user_dict,rf,"kills")
        updateLenientRF(user_dict,rf,"points")
+       updateUserData(username, user_dict)
 
 def loadUserLogin():
     return fileHandler.readJSON("data/userLogin.json")
@@ -108,6 +109,11 @@ def updateUserLogin(username,hashpass):
     user_login = loadUserLogin()
     user_login[username] = {"password": hashpass}
     fileHandler.writeJSON(user_login,"data/userLogin.json")
+
+def updateUserData(username,data):
+    user_data = loadUserData()
+    user_data[username] = data
+    fileHandler.writeJSON(user_data,"data/userData.json")
 
 def confirmUser(username, password):
     user_login = loadUserLogin()
@@ -124,4 +130,4 @@ def updateLenientRF(di,rf,key):
 if __name__ == "__main__":
     web.debug = True
     web.run(host = WEB_IP,port = WEB_PORT)
-    user_login = loaduUserLogin()
+    user_login = loadUserLogin()
