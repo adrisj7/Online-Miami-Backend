@@ -1,4 +1,6 @@
-var mainUrl = "http://localhost:5000/"
+
+var mainUrl = "http://http://192.241.188.10:5000/"
+//var mainUrl = "http://localhost:5000/"
 
 var errorMessage = document.getElementById("error");
 var login = function() {
