@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+    <div class="well login center-block">
+      <h2> Register </h2>
+      <div class="form-group">
+        <p> <b> Username </b> </p>
+        <input type="text" class="form-control" id="username">
+      </div>
+
+      <div class="form-group">
+        <p> <b> Password </b> </p>
+        <input type="password" class="form-control" id="password1">
+      </div>
+
+      <div class="form-group">
+        <p> <b> Retype Password </b> </p>
+        <input type="password" class="form-control" id="password2">
+      </div>
+
+    <p id="error" style="color: red"> </p>
+      <input type="button" class="btn btn-primary btn-block" value="Register"
+      onclick="register()">
+    </div>
+
+    <script src="../static/register.js"></script>
+{% endblock %}
